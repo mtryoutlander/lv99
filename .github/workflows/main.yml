@@ -31,8 +31,13 @@ jobs:
           targetPlatform: WebGL       # Return License (Un-Comment if you're using a pro license)
        #- name: Return license
        #  uses: game-ci/unity-return-license@v1
-       #  if: always()       # Output
-       - uses: actions/upload-artifact@v2
-         with:
-           name: Build
-           path: build
+       #  if: always()       
+       # Output
+       # Upload to Itch
+      - uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: html5
+          ITCH_GAME: rat-escape-lv99
+          ITCH_USER: emberstorm
+          PACKAGE: build/WebGL
